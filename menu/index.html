@@ -1,0 +1,302 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#6f1730">
+<meta name="description" content="Bharati's Kitchen — homestyle food menu and WhatsApp ordering.">
+<title>Bharati's Kitchen — Menu</title>
+<style>
+:root{--wine:#6f1730;--wine2:#8c2340;--cream:#fbf7f2;--ink:#241d1d;--muted:#756c69;--line:#e9e0db;--card:#fff;--green:#218c55}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--cream);color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}button{font:inherit}a{text-decoration:none;color:inherit}
+.header{position:sticky;top:0;z-index:20;background:rgba(251,247,242,.94);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}.header-inner{max-width:760px;margin:auto;padding:14px 16px 10px}.brand{display:flex;align-items:center;justify-content:space-between;gap:12px}.brand-name{font-family:Georgia,serif;font-size:24px;font-weight:700;color:var(--wine)}.tag{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.search{margin-top:12px;position:relative}.search input{width:100%;border:1px solid var(--line);border-radius:14px;padding:12px 14px 12px 40px;background:#fff;outline:none;font-size:14px}.search span{position:absolute;left:14px;top:10px;font-size:18px;color:var(--muted)}
+.categories{display:flex;gap:8px;overflow-x:auto;-webkit-overflow-scrolling:touch;padding:10px 0 6px;scrollbar-width:none;position:relative;z-index:10}.categories::-webkit-scrollbar{display:none}.cat{white-space:nowrap;border:1px solid var(--line);background:#fff;border-radius:999px;padding:8px 14px;font-size:13px;color:#514846;cursor:pointer;-webkit-tap-highlight-color:transparent;touch-action:manipulation;user-select:none;transition:background .15s,color .15s,border-color .15s}.cat:active{transform:scale(.96)}.cat.active{background:var(--wine);color:#fff;border-color:var(--wine)}
+main{max-width:760px;margin:auto;padding:18px 16px 110px}.hero{background:var(--wine);color:#fff;border-radius:22px;padding:24px 20px;margin-bottom:18px;scroll-margin-top:140px}.hero h1{font:700 32px Georgia,serif;margin:0 0 7px}.hero p{margin:0;color:#f5dfe5;font-size:14px;line-height:1.5}.hero small{display:block;margin-top:14px;color:#f4cbd5;font-size:11px}
+.section{margin:26px 0;scroll-margin-top:190px}.section-head{display:flex;justify-content:space-between;align-items:end;margin-bottom:10px}.section h2{font:700 22px Georgia,serif;margin:0;color:var(--wine)}.count{font-size:11px;color:var(--muted)}
+.item{display:grid;grid-template-columns:96px 1fr;gap:13px;padding:13px 8px;margin:0 -8px;border-bottom:1px solid var(--line);cursor:pointer;-webkit-tap-highlight-color:transparent;border-radius:14px;transition:background .15s}.item:hover,.item:active{background:rgba(111,23,48,.03)}.pic{width:96px;height:96px;border-radius:16px;background:linear-gradient(135deg,#ead7d0,#d8b3bc);display:flex;align-items:center;justify-content:center;color:var(--wine);font:700 24px Georgia,serif;overflow:hidden;flex-shrink:0}.pic img{width:100%;height:100%;object-fit:cover;display:block}.info{min-width:0}.item-top{display:flex;justify-content:space-between;gap:8px;align-items:start}.name{font-weight:700;font-size:15px;line-height:1.25}.price{font-weight:800;color:var(--wine);white-space:nowrap;font-size:15px}.desc{font-size:12px;line-height:1.45;color:var(--muted);margin:5px 0 10px}.note{font-size:10px;color:#9a5a67;margin-top:-4px;margin-bottom:8px}.actions{display:flex;justify-content:flex-end}.add{border:1px solid var(--wine);color:var(--wine);background:#fff;border-radius:9px;padding:6px 15px;font-weight:700;font-size:12px;cursor:pointer;touch-action:manipulation;transition:background .15s,color .15s}.add:active{background:var(--wine);color:#fff}.qty{display:flex;align-items:center;border:1px solid var(--line);border-radius:9px;overflow:hidden;background:#fff}.qty button{width:30px;height:30px;border:0;background:#fff;color:var(--wine);font-weight:800;cursor:pointer;touch-action:manipulation}.qty button:active{background:#f8ecee}.qty b{min-width:28px;text-align:center;font-size:12px}
+.empty{display:none;text-align:center;color:var(--muted);padding:40px 10px}.cart{position:fixed;left:50%;bottom:14px;transform:translateX(-50%);width:min(728px,calc(100% - 28px));z-index:30;background:var(--wine);color:#fff;border-radius:16px;padding:11px 13px;box-shadow:0 12px 30px rgba(61,15,28,.25);display:flex;align-items:center;justify-content:space-between;gap:10px}.cart.hidden{display:none}.cart-info{font-size:12px}.cart-info strong{display:block;font-size:14px}.order{border:0;background:#fff;color:var(--wine);border-radius:11px;padding:10px 14px;font-weight:800;font-size:12px;cursor:pointer;touch-action:manipulation}
+.drawer,.product-drawer{position:fixed;inset:0;background:rgba(20,10,12,.48);backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px);z-index:50;display:flex;align-items:flex-end;justify-content:center;opacity:0;pointer-events:none;transition:opacity .25s ease}.drawer.open,.product-drawer.open{opacity:1;pointer-events:auto}
+.sheet,.product-sheet{background:#fff;width:100%;max-width:580px;margin:0 auto;border-radius:24px 24px 0 0;max-height:85vh;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:14px 18px calc(24px + env(safe-area-inset-bottom, 0px));position:relative;box-shadow:0 -10px 40px rgba(33,10,18,.25);transform:translateY(100%);transition:transform .3s cubic-bezier(0.16, 1, 0.3, 1);box-sizing:border-box}
+.drawer.open .sheet,.product-drawer.open .product-sheet{transform:translateY(0)}
+.drag-handle{width:42px;height:4px;background:#dfd6d3;border-radius:999px;margin:2px auto 14px}
+.sheet-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}.sheet h3{margin:0;font:700 24px Georgia,serif;color:var(--wine)}.close{border:0;background:#f4eeeb;border-radius:50%;width:34px;height:34px;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:18px;color:#453e3b}.close:hover{background:#e8dfdc}
+.product-close{position:absolute;top:14px;right:16px;z-index:3}
+.cart-row{display:flex;justify-content:space-between;gap:12px;padding:12px 0;border-bottom:1px solid var(--line);font-size:13px}.cart-row span:last-child{font-weight:700}.total{display:flex;justify-content:space-between;font-weight:800;padding:15px 0;font-size:16px}.wa{display:block;text-align:center;background:var(--green);color:#fff;border-radius:12px;padding:13px;font-weight:800}.helper{font-size:11px;color:var(--muted);text-align:center;margin-top:8px}
+.product-pic{width:100%;height:220px;border-radius:18px;background:linear-gradient(135deg,#ead7d0,#d8b3bc);display:flex;align-items:center;justify-content:center;color:var(--wine);font:700 48px Georgia,serif;overflow:hidden;margin-bottom:16px}
+.product-pic img{width:100%;height:100%;object-fit:cover;display:block}
+.product-header{margin-bottom:8px}
+.product-title-row{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
+.product-title{margin:0;font:700 22px Georgia,serif;color:var(--wine);line-height:1.25}
+.product-price{font-size:22px;font-weight:800;color:var(--wine);white-space:nowrap}
+.product-cat-tag{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-top:4px}
+.product-desc{font-size:13.5px;line-height:1.55;color:#443b39;margin:8px 0 12px}
+.product-note{font-size:11.5px;color:#9a5a67;background:#fcf1f3;padding:6px 12px;border-radius:8px;display:inline-block;margin-bottom:14px;font-weight:600}
+.product-actions-bar{display:flex;align-items:center;gap:12px;margin-top:16px;padding-top:16px;border-top:1px solid var(--line)}
+.product-qty-control{display:flex;align-items:center;border:1px solid var(--line);border-radius:12px;background:#faf7f5;overflow:hidden;flex-shrink:0}
+.p-qty-btn{width:42px;height:42px;border:0;background:transparent;color:var(--wine);font-size:18px;font-weight:800;cursor:pointer;display:flex;align-items:center;justify-content:center;touch-action:manipulation}
+.p-qty-btn:active{background:rgba(111,23,48,.08)}
+.p-qty-num{min-width:34px;text-align:center;font-size:15px;font-weight:700;color:var(--ink)}
+.product-submit-btn{flex:1;border:0;background:var(--wine);color:#fff;border-radius:12px;padding:12px 16px;font-size:14px;font-weight:700;cursor:pointer;height:44px;display:flex;align-items:center;justify-content:center;transition:background .15s;touch-action:manipulation}
+.product-submit-btn:hover{background:var(--wine2)}.product-submit-btn:active{transform:scale(.98)}
+.custom-order{margin:40px 0 16px}
+.custom-card{background:#fff;border:1.5px dashed #deb8c3;border-radius:20px;padding:24px 20px;text-align:center;box-shadow:0 4px 18px rgba(111,23,48,.04)}
+.custom-tag{display:inline-block;font-size:11px;letter-spacing:.1em;text-transform:uppercase;font-weight:700;color:var(--wine);background:#f9eef1;padding:4px 12px;border-radius:999px;margin-bottom:10px}
+.custom-card h2{font:700 22px Georgia,serif;color:var(--wine);margin:0 0 8px}
+.custom-card p{font-size:13.5px;line-height:1.5;color:#554c4a;max-width:440px;margin:0 auto 16px}
+.custom-wa-btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:var(--green);color:#fff;font-weight:700;font-size:14px;padding:12px 24px;border-radius:12px;text-decoration:none;transition:opacity .15s,transform .1s;box-shadow:0 4px 14px rgba(33,140,85,.25);touch-action:manipulation}
+.custom-wa-btn:hover{opacity:.94}.custom-wa-btn:active{transform:scale(.98)}
+.custom-note{display:block;font-size:11.5px;color:var(--muted);margin-top:10px}
+.footer{text-align:center;padding:26px 16px 16px;color:var(--muted);border-top:1px solid var(--line);margin-top:24px}
+.footer-name{font-family:Georgia,serif;font-size:18px;font-weight:700;color:var(--wine);margin-bottom:3px}
+.footer-tag{font-size:11.5px;letter-spacing:.06em;color:#736a67;margin-bottom:6px}
+.footer-direct{font-size:11.5px;font-weight:600;color:var(--wine);margin-bottom:10px}
+.footer-copy{font-size:10.5px;color:#a39794}
+@media(max-width:380px){.item{grid-template-columns:72px 1fr;gap:10px}.pic{width:72px;height:72px;font-size:18px!important}.name{font-size:14px}.price{font-size:14px}.hero h1{font-size:26px}.brand-name{font-size:20px}.product-pic{height:180px}.product-title{font-size:20px}.product-price{font-size:20px}}
+@media(min-width:700px){main{padding-top:24px}.item{grid-template-columns:112px 1fr}.pic{width:112px;height:112px}.product-pic{height:240px}}
+@supports(padding-bottom:env(safe-area-inset-bottom)){.cart{bottom:calc(14px + env(safe-area-inset-bottom))}}
+</style>
+</head>
+<body>
+<header class="header"><div class="header-inner"><div class="brand"><div><div class="brand-name">Bharati's Kitchen</div><div class="tag">Homestyle food • made with love</div></div></div><div class="search"><span>⌕</span><input id="search" placeholder="Search the menu…" autocomplete="off"></div><nav class="categories" id="categories"></nav></div></header>
+<main><section class="hero" id="hero"><h1>Today's Menu</h1><p>Simple, comforting food for home — available for direct neighbourhood orders.</p><small>Order directly on WhatsApp • Zomato is also available</small></section><div id="menu"></div><div class="empty" id="empty">No items found. Try another search.</div><section class="custom-order"><div class="custom-card"><span class="custom-tag">Special & Bulk Orders</span><h2>Need a custom order?</h2><p>Want a larger quantity, different combination, or something special? Tell us what you need.</p><a class="custom-wa-btn" id="customWaBtn" href="#" target="_blank" rel="noopener"><span>📲</span> Customize on WhatsApp</a><small class="custom-note">Better quantities may qualify for a special price.</small></div></section><footer class="footer"><div class="footer-name">Bharati's Kitchen</div><div class="footer-tag">Homestyle Food • Made with Love</div><div class="footer-direct">Order directly on WhatsApp</div><div class="footer-copy">© 2026 Bharati's Kitchen</div></footer></main>
+<div class="cart hidden" id="cart"><div class="cart-info"><strong id="cartCount">0 items</strong><span id="cartTotal">₹0</span></div><div style="display:flex;gap:8px"><button class="order" onclick="openCart()">View order →</button><a class="order" id="cartWa" href="#" target="_blank" rel="noopener" style="background:var(--green);color:#fff;text-decoration:none;display:flex;align-items:center;gap:4px">📲 WhatsApp</a></div></div>
+<div class="drawer" id="drawer" onclick="if(event.target===this)closeCart()"><div class="sheet"><div class="drag-handle" aria-hidden="true"></div><div class="sheet-head"><h3>Your order</h3><button class="close" onclick="closeCart()">×</button></div><div id="cartRows"></div><div class="total"><span>Total</span><span id="sheetTotal">₹0</span></div><a class="wa" id="wa" href="#" target="_blank" rel="noopener">📲 Send order on WhatsApp</a><div class="helper">All orders are Cash on Delivery (COD)</div></div></div>
+<div class="product-drawer" id="productDrawer" onclick="if(event.target===this)closeProductSheet()"><div class="product-sheet"><div class="drag-handle" aria-hidden="true"></div><button class="close product-close" onclick="closeProductSheet()" aria-label="Close">×</button><div id="productContent"></div></div></div>
+<script>
+const WHATSAPP_NUMBER='917208007524';
+const menu=[
+['Snacks','Maggi','The classic favorite loaded with lots of love.',109,'https://ik.imagekit.io/jdartix/Maggi.jpg'],
+['Snacks','Vegetable Masala Maggi','The classic favorite loaded with onions, carrots, and peas.',129,'https://ik.imagekit.io/jdartix/Vegetable%20Masala%20Maggi.jpg'],
+['Snacks','Protein-Rich Chana Chat','Boiled brown chana tossed with our special blend of spices, fresh onion, tomato, and coriander (kothambir). A protein-rich, savory street-style chat.',149,'https://ik.imagekit.io/jdartix/Protein-Rich%20Chana%20Chat.jpg?updatedAt=1789384584818'],
+['Snacks','Poori Bhaji (5pc)','5 fluffy whole wheat pooris served with spicy Aloo Bhaji.',169,'https://ik.imagekit.io/jdartix/Poori%20Bhaji%20(5pc).jpg?updatedAt=1789384584108'],
+['Snacks','Classic Brown Bread Aloo Sandwich (2pc)','Toasted brown bread sandwich packed with a spiced aloo stuffing, cut into 4 bite-sized pieces. Made with wholesome brown bread, no maida, no palm oil. A wholesome bite that is healthy without compromising on taste.',179,'https://ik.imagekit.io/jdartix/Brown_bread_sandwich_with_aloo_202607130856.jpeg'],
+['Parathas','Methi Thepla (2pc)','No maida, Whole wheat paratha. Served with curd and pickle [Subject to Availability].',219,'https://ik.imagekit.io/jdartix/Methi%20Thepla.jpg'],
+['Parathas','Aloo Paratha 2pc with curd (Maa\'s Special)','No maida, Whole wheat paratha. Served with curd and pickle [Subject to Availability].',229,'https://ik.imagekit.io/jdartix/Aloo%20Paratha.jpg'],
+['Parathas','Gobi Paratha (2pc)','No maida, Whole wheat paratha. Served with curd and pickle [Subject to Availability].',229,'https://ik.imagekit.io/jdartix/Gobi%20Paratha.jpg'],
+['Parathas','Matar Paratha (2pc)','No maida, Whole wheat paratha. Served with curd and pickle [Subject to Availability].',239,'https://ik.imagekit.io/jdartix/Matar%20Paratha.jpg'],
+['Parathas','Paneer Paratha (2pc)','No maida, Whole wheat paratha. Served with curd and pickle [Subject to Availability].',299,'https://ik.imagekit.io/jdartix/Paneer%20Paratha.jpg'],
+['Rice & Khichdi','Masala Veg Khichdi','Spiced khichdi loaded with fresh vegetables.',219,'https://ik.imagekit.io/jdartix/Masala%20Veg%20Khichdi.jpg'],
+['Rice & Khichdi','Homestyle Dal Khichdi','Light and healthy moong dal khichdi with ghee.',239,'https://ik.imagekit.io/jdartix/Homestyle%20Dal%20Khichdi.jpg'],
+['Mini Meals','Roti-Sabji Meal','3 Phulka + Aloo Jeera Dry Sabji + Onion & Cucumber Salad [Subject to Availability]. Whole wheat phulka. No soda. Served separately in a meal tray.',179,'https://ik.imagekit.io/jdartix/Jeera%20Aloo%20&%20Roti.jpg'],
+['Mini Meals','Pithla Bhakri Meal','Chef\'s special 2 Bajri Bhakri + Besan Pithla + Lasun Thecha [Subject to Availability]. Rustic Maharashtrian meal served in eco-friendly tray packaging.',209,'https://ik.imagekit.io/jdartix/Bhakri%20&%20Pithala.jpg'],
+['Fasting','Crispy Sabudana Vada (4pc)','Fasting special golden fried sabudana vadas crunchy outside, soft inside. Served with sweet curd [dahi] or green peanut chutney made with sendha namak [rock salt].',209,'https://ik.imagekit.io/jdartix/Sabudana%20Vada%20V3.jpg'],
+['Fasting','Sabudana Khichdi','Non-sticky Sabudana cooked with crunchy peanuts and green chillies.',199,'https://ik.imagekit.io/jdartix/Sabudana%20Khichadi%20Fasting.jpg'],
+['Fasting','Fasting Gulab Jamun - 4pc (Ratalu & Raw Banana)','[Veg preparation] Soft, maida-free jamuns made with Sweet Potato and Raw Banana. Prepared with lots of love for a traditional homemade taste. 100% Upavas friendly.',139,'https://ik.imagekit.io/jdartix/Gulab%20Jamun%20Fast%20Special.jpg'],
+['Sabzi & Dal','Chatpata Masala Aloo','Stir fry potato slices with cumin seed and other spices.',219,'https://ik.imagekit.io/jdartix/Chatpata%20Aloo_.jpg'],
+['Sabzi & Dal','Double Tadka Dal','Thick yellow dal with a smokey garlic and ghee tadka.',239,'https://ik.imagekit.io/jdartix/Double%20Dal%20Tadka.jpg'],
+['Sabzi & Dal','Khandeshi Shev Bhaji','A spicy, fiery Maharashtrian specialty. Aromatic red gravy served with crunchy thick sev. Sev is packed separately to keep it crispy.',229,'https://ik.imagekit.io/jdartix/Khandeshi%20Shev%20Bhaji.jpg'],
+['Desserts','Desi Ghee Suji Sheera','[Veg preparation] Melt-in-mouth suji [rava] halwa cooked in pure ghee.',169,'https://ik.imagekit.io/jdartix/Desi%20Ghee%20Suji%20Halwa.jpg'],
+['Desserts','Fasting Gulab Jamun (Ratalu & Kela) 4pc','[Veg preparation] Soft, maida-free jamuns made with Sweet Potato and Raw Banana. Prepared with lots of love for a traditional homemade taste. 100% Upavas friendly.',139,'https://ik.imagekit.io/jdartix/Gulab%20Jamun%20Fast%20Special.jpg'],
+['Desserts','Puran Poli (2pc)','Soft, hand-rolled wheat flatbread stuffed with a rich filling of chana dal, jaggery & pure ghee. Made the traditional homestyle way, no maida, no palm oil, just honest ingredients. Served warm.',199,'https://ik.imagekit.io/jdartix/Puran%20Poli.jpg'],
+['Pasta & More','White Sauce Pasta','Pasta simmered in a rich, milk-based white sauce with butter, cheese, and fresh mixed vegetables, finished with Italian herbs. Choose your pasta shape - Penne or Macaroni.',349,'https://ik.imagekit.io/jdartix/White%20Sauce%20Pasta.jpg?updatedAt=1789384584134'],
+['Pasta & More','Macaroni White Sauce Pasta','Description to be added.',349],
+['Drinks','Dahi Curd','',34],
+['Drinks','Refreshing Plain Chaas','',55],
+['Drinks','Spiced Masala Chaas','',66],
+['Drinks','Lassi','',77],
+['Sides','Single Whole Wheat Chapati','',15],
+['Sides','Bajra Bhakri','',25],
+['Sides','Jowar Bhakri','',39],
+['Sides','5 Poori','',89]
+];
+const cart={};
+const categories=[
+  'Best Sellers',
+  'Snacks',
+  'Parathas',
+  'Rice & Khichdi',
+  'Mini Meals',
+  'Fasting',
+  'Sabzi & Dal',
+  'Desserts',
+  'Pasta & More',
+  'Drinks',
+  'Sides'
+];
+const bestSellerTitles=[
+  'Puran Poli (2pc)',
+  'Sabudana Khichdi',
+  'Crispy Sabudana Vada (4pc)'
+];
+let active='All';
+const initials=n=>{const i=n.replace(/[^A-Za-z ]/g,'').split(' ').filter(Boolean).slice(0,2).map(x=>x[0]).join('').toUpperCase();return i||'🍽';};
+function slug(s){return s.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'')}
+
+function renderCats(){
+  document.getElementById('categories').innerHTML=['All',...categories].map(c=>{
+    const href=c==='All'?'#hero':'#'+slug(c);
+    return `<a class="cat ${c===active?'active':''}" href="${href}">${c}</a>`;
+  }).join('');
+}
+
+function render(){
+  const q=document.getElementById('search').value.toLowerCase().trim();
+  const groups={};
+  menu.forEach((x,i)=>{
+    if(!q||x[1].toLowerCase().includes(q)||x[2].toLowerCase().includes(q)){
+      (groups[x[0]]??=[]).push([x,i]);
+    }
+  });
+  let html='';
+  for(const cat of categories){
+    let items;
+    if(cat==='Best Sellers'){
+      items=bestSellerTitles.map(title=>{
+        const i=menu.findIndex(m=>m[1]===title);
+        return i!==-1?[menu[i],i]:null;
+      }).filter(Boolean);
+      if(q){
+        items=items.filter(([x])=>x[1].toLowerCase().includes(q)||x[2].toLowerCase().includes(q));
+      }
+    }else{
+      items=groups[cat];
+    }
+    if(!items||!items.length)continue;
+    html+=`<section class="section" id="${slug(cat)}"><div class="section-head"><h2>${cat}</h2><span class="count">${items.length} items</span></div>`;
+    for(const [x,i] of items){
+      const qty=cart[i]||0;
+      const initial=initials(x[1]);
+      const pic=x[4]
+        ?`<div class="pic"><img src="${x[4]}" alt="${x[1]}" loading="lazy" onerror="this.onerror=null;this.parentElement.textContent='${initial}'"></div>`
+        :`<div class="pic">${initial}</div>`;
+      html+=`<article class="item" onclick="openProductSheet(${i})">${pic}<div class="info"><div class="item-top"><div class="name">${x[1]}</div><div class="price">₹${x[3]}</div></div>${x[2]?`<div class="desc">${x[2]}</div>`:''}${/Availability/.test(x[2])?'<div class="note">Subject to availability</div>':''}<div class="actions" onclick="event.stopPropagation()">${qty?`<div class="qty"><button onclick="change(${i},-1)">−</button><b>${qty}</b><button onclick="change(${i},1)">+</button></div>`:`<button class="add" onclick="change(${i},1)">Add</button>`}</div></div></article>`;
+    }
+    html+='</section>';
+  }
+  document.getElementById('menu').innerHTML=html;
+  document.getElementById('empty').style.display=html?'none':'block';
+  updateCart();
+}
+
+function change(i,d){cart[i]=Math.max(0,(cart[i]||0)+d);if(!cart[i])delete cart[i];render()}
+
+function updateCart(){
+  let count=0,total=0;
+  Object.entries(cart).forEach(([i,q])=>{count+=q;total+=menu[i][3]*q});
+  document.getElementById('cart').classList.toggle('hidden',count===0);
+  document.getElementById('cartCount').textContent=`${count} item${count===1?'':'s'}`;
+  document.getElementById('cartTotal').textContent=`₹${total}`;
+  document.getElementById('sheetTotal').textContent=`₹${total}`;
+  document.getElementById('cartRows').innerHTML=Object.entries(cart).map(([i,q])=>
+    `<div class="cart-row"><span>${q} × ${menu[i][1]}</span><span>₹${menu[i][3]*q}</span></div>`
+  ).join('');
+  const lines=Object.entries(cart).map(([i,q])=>`${q} × ${menu[i][1]} — ₹${menu[i][3]*q}`);
+  const text=`Hi Bharati's Kitchen!%0A%0AI'd like to order:%0A${lines.map(encodeURIComponent).join('%0A')}%0A%0ATotal: ₹${total}%0A%0AName:%0AAddress:%0A`;
+  const waUrl=`https://wa.me/${WHATSAPP_NUMBER}?text=${text}`;
+  document.getElementById('wa').href=waUrl;
+  document.getElementById('cartWa').href=waUrl;
+}
+
+let activeProductIndex=null;
+function openProductSheet(i){
+  closeCart();
+  activeProductIndex=i;
+  renderProductSheet();
+  document.getElementById('productDrawer').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeProductSheet(){
+  const d=document.getElementById('productDrawer');
+  if(d)d.classList.remove('open');
+  activeProductIndex=null;
+  if(!document.getElementById('drawer').classList.contains('open')){
+    document.body.style.overflow='';
+  }
+}
+function renderProductSheet(){
+  if(activeProductIndex===null)return;
+  const i=activeProductIndex;
+  const x=menu[i];
+  const qty=cart[i]||0;
+  const initial=initials(x[1]);
+  const picHtml=x[4]
+    ?`<div class="product-pic"><img src="${x[4]}" alt="${x[1]}" loading="lazy" onerror="this.onerror=null;this.parentElement.textContent='${initial}'"></div>`
+    :`<div class="product-pic">${initial}</div>`;
+  document.getElementById('productContent').innerHTML=`
+    ${picHtml}
+    <div class="product-header">
+      <div class="product-title-row">
+        <h3 class="product-title">${x[1]}</h3>
+        <div class="product-price">₹${x[3]}</div>
+      </div>
+      <div class="product-cat-tag">${x[0]}</div>
+    </div>
+    ${x[2]?`<p class="product-desc">${x[2]}</p>`:''}
+    ${/Availability/.test(x[2])?'<div class="product-note">⚠️ Subject to availability</div>':''}
+    <div class="product-actions-bar">
+      <div class="product-qty-control">
+        <button type="button" class="p-qty-btn" onclick="updateProductSheetQty(-1)" aria-label="Decrease quantity">−</button>
+        <span class="p-qty-num" id="sheetQtyVal">${qty}</span>
+        <button type="button" class="p-qty-btn" onclick="updateProductSheetQty(1)" aria-label="Increase quantity">+</button>
+      </div>
+      <button type="button" class="product-submit-btn" id="sheetActionBtn" onclick="handleProductSubmit()">
+        ${qty>0?`Update Cart • ₹${x[3]*qty}`:`Add to Cart • ₹${x[3]}`}
+      </button>
+    </div>
+  `;
+}
+function updateProductSheetQty(delta){
+  if(activeProductIndex===null)return;
+  change(activeProductIndex,delta);
+  renderProductSheet();
+}
+function handleProductSubmit(){
+  if(activeProductIndex===null)return;
+  if((cart[activeProductIndex]||0)===0){
+    change(activeProductIndex,1);
+  }
+  closeProductSheet();
+}
+
+function openCart(){
+  closeProductSheet();
+  document.getElementById('drawer').classList.add('open');
+  document.body.style.overflow='hidden';
+  updateCart();
+}
+function closeCart(){
+  document.getElementById('drawer').classList.remove('open');
+  if(activeProductIndex===null){
+    document.body.style.overflow='';
+  }
+}
+
+// Escape key to close drawers
+window.addEventListener('keydown',e=>{
+  if(e.key==='Escape'){
+    closeProductSheet();
+    closeCart();
+  }
+});
+
+// Setup custom order WhatsApp link
+const customMsg="Hi Bharati's Kitchen!\n\nI'd like to place a custom order.\n\nWhat I'd like:\nQuantity:\nItems / combination:\nPreferred date/time:\n\nPlease let me know the best price.";
+const customWaUrl=`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(customMsg)}`;
+const customBtn=document.getElementById('customWaBtn');
+if(customBtn)customBtn.href=customWaUrl;
+
+// Scroll spy — highlight active category as user scrolls
+let ticking=false;
+window.addEventListener('scroll',()=>{
+  if(!ticking){
+    ticking=true;
+    requestAnimationFrame(()=>{
+      const threshold=200;
+      let found='All';
+      for(const cat of categories){
+        const sec=document.getElementById(slug(cat));
+        if(sec && sec.getBoundingClientRect().top<=threshold){found=cat}
+      }
+      if(found!==active){active=found;renderCats()}
+      ticking=false;
+    });
+  }
+});
+
+document.getElementById('search').addEventListener('input',render);
+renderCats();
+render();
+</script>
+</body></html>
+
